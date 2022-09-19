@@ -363,21 +363,20 @@ public class DogManager {
 	}
 
 	private void editDog() {
-		System.out.println("수정할 강아지를 선택하세요");
-	      String updog = in.nextLine();
+	System.out.println("수정할 강아지를 선택하세요");
+      	String updog = in.nextLine();
 
-	      for (int i = 0; i < dList.length; i++) {
-	         if (dList[i] != null) {
-	            if (updog.equals(dList[i].name)) {
-	               
-
-	                     
-	                  
-	               
-	            
-	         
-	      }
-	      System.out.println("수정되었습니다.");
+     	 for (int i = 0; i < dList.length; i++) {
+         	if (dList[i] != null) {
+            	   if (updog.equals(dList[i].name)) {
+               
+               System.out.println("강아지 종류");
+               String type = in.nextLine();
+               dList[i].type=type;
+            }
+         }
+      }
+      System.out.println("수정되었습니다.");
 
 		
 	}
