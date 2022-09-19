@@ -97,5 +97,185 @@ IndexOf는 문자열에서 특정 단어가 있는지를 찾고 있을 경우 �
   
 8번  
 ![8번](https://user-images.githubusercontent.com/80766275/190938609-52cdec95-af28-4604-9677-63c9d4ef5ce1.PNG)
+  
+  
+-----------------------------------  
+  
+  
+  
+  
+  ![객체](https://user-images.githubusercontent.com/80766275/190944608-4b2ca141-0615-4d44-9d6d-b909c11c2a19.PNG)
+  
+  
+  ![선언문 구현문](https://user-images.githubusercontent.com/80766275/190945101-9026d31b-023c-4d5d-8d72-9eada6303c7c.PNG)
+  
+  
+1.참조변수는 객체의 주소값을 가진다.  
+2. new 연산자는 객체를 만든다.  
+3. 참조변수의 주소값을 참조하여 객체의 전역변수나 메서드를 실행한다.  
+  
+  
+  
+  
+문제  
+  
+  
+![문제](https://user-images.githubusercontent.com/80766275/190951983-df6e290c-1ef8-4c61-bb3b-11ee80a14779.PNG)
+  
+  
+--------------------------------------------  
+ Market 만들기  
+   
+   
+ 
+ ```
+ package Market;
+
+public class MainMarket {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		new GoodsManager();
+		
+	}
+
+}
+```  
+  
+굿즈 하나 클래스
+  
+```
+package Market;
+
+public class Goods {
+
+	String name=null;
+	String id =null;
+	int cnt= 0;
+	int price=0;
+	
+	//물건의 이름을 저장하는 메서드
+	public void setting (String name,String id,int cnt,int price) {
+		//this는 자기 자신의 전역변수를 구분할때 사용하는 키워드
+		this.name=name;
+		this.id=id;
+		this.cnt=cnt;
+		this.price=price;
+
+	}
+	
+	public void prt() {
+		System.out.println("이름:"+this.name);
+		System.out.println("아이디:"+this.id);
+		System.out.println("수량:"+this.cnt);
+		System.out.println("단가:"+this.price);
+
+	}
+}
+```  
+  
+  
+마켓메니저 클래스  
+  
+```
+package Market;
+
+import java.util.Scanner;
+
+public class GoodsManager {
+
+	Goods[] gList = new Goods[10];
+	Scanner in = new Scanner(System.in);
+	GoodsManager(){
+		//물건을 관리하는 객체 물건 1개가 아니라 전체
+		for(;;) {
+			menu();
+			int selMenu = in.nextInt();
+			in.nextLine();
+			if(selMenu==1) {
+				addGoods();
+			}else if(selMenu==3) {
+				listGoods();
+			}
+		}
+	}
+	
+	private void listGoods() {
+		for(int i=0; i<gList.length;i++) {
+			if(gList[i]!=null) {
+				System.out.println(i+"번 정보----");
+				gList[i].prt();
+				System.out.println("----------");
+			}
+		}
+	}
+
+	private void addGoods() {
+		Goods newGoods= new Goods();
+		System.out.println("이름입력");
+		String name = in.nextLine();
+		System.out.println("아이디입력");
+		String id = in.nextLine();
+		System.out.println("수량입력");
+		int cnt = in.nextInt();
+		in.nextLine();
+		System.out.println("가격입력");
+		int price = in.nextInt ();
+		in.nextLine();
+		newGoods.setting(name, id, cnt, price);
+		
+		for(int i=0; i<gList.length; i++) {
+			if(gList[i]==null) {
+				gList[i] =newGoods;
+				break;
+			}
+		}
+	}
+
+	private void menu() {
+		System.out.println("1. 물건등록");
+		System.out.println("2. 물건수정");
+		System.out.println("3. 전체보기");
+		System.out.println("4. 물건삭제");
+
+	}
+}
+``` 
+  
+   
+------------------------------------------------------------------  
+   
+   
+   
+   
+실습 이론  
+  
+1. 선언문시 참조타입,원시타입
+2. 객체를 만드는 연산자는 new,객체의 주소를 가지는것은 참조변수의 값
+3. 클래스는 전역변수와 메서드로 구성한다
+4. 참조타입 변수 여러개가 같은 주소값을 가지고 있다면 객체를 공유한다는 의미  
+  
+  
+  
+오후실습  
+  
+1. 클래스는 세분화 물건과 물건 관리는 깊게 생각하면 다름
+2. 필수기능 -등록,전체보기,삭제 ,수정
+3. 세부기능- 사용할 수 있는 아이디의 기준->중복불가 ,욕설 불가  
+  
+  
+  
+   
+  
+  
+  
+
+
+
+
+  
+
+  
 
 
