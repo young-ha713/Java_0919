@@ -269,6 +269,157 @@ public class GoodsManager {
    
   
   
+```
+package dogSchool;
+
+public class Dog {
+	String name = null;
+	String type = null;
+	String gender =null;
+	int age =0;
+	String note = null;
+	
+	public void input(String name, String type ,String gender, int age,String note) {
+		this.name= name;
+		this.type= type;
+		this.gender=gender;
+		this.age=age;
+		this.note=note;
+	}
+	
+	public void prt() {
+		System.out.println("강아지 이름 :"+this.name);
+		System.out.println("강아지 종 :"+this.type);
+		System.out.println("강아지 성별 :"+this.gender);
+		System.out.println("강아지 나이 :"+this.age);
+		System.out.println("강아지 특이사항 :"+this.note);
+
+	}
+}
+```
+  
+  
+```
+package dogSchool;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		new DogManager();
+	}
+
+}
+```
+  
+  
+```
+package dogSchool;
+
+import java.util.Scanner;
+
+public class DogManager {
+	Dog[]dList = new Dog[10];
+	Scanner in = new Scanner(System.in);
+	DogManager(){
+		for(;;) {
+			menu();
+			int selMenu = in.nextInt();
+			in.nextLine();
+			if(selMenu==1) {
+				addDog();
+			}else if(selMenu==2) {
+				editDog();
+			}else if(selMenu==3) {
+				showAll();
+			}else if(selMenu==4) {
+				outDog();
+			}
+		}
+	}
+	
+	
+	
+	private void outDog() {
+		System.out.println("퇴소시킬 강아지 이름을 입력해주세요");
+		String outdog= in.nextLine();
+		for(int i=0; i<dList.length;i++) {
+			if(outdog.equals(dList[i].name)) {
+				dList[i]=null;
+				System.out.println("퇴소되었습니다.");
+				break;
+			}
+		}
+	}
+
+	private void showAll() {
+		for(int i=0; i<dList.length;i++) {
+			if(dList[i]!=null) {
+				System.out.println(i+"번 원생 입니다.");
+				dList[i].prt();
+				System.out.println("--------");
+			}
+		}
+	}
+
+	private void editDog() {
+		System.out.println("수정할 강아지를 선택하세요");
+	      String updog = in.nextLine();
+
+	      for (int i = 0; i < dList.length; i++) {
+	         if (dList[i] != null) {
+	            if (updog.equals(dList[i].name)) {
+	               
+
+	                     
+	                  
+	               
+	            
+	         
+	      }
+	      System.out.println("수정되었습니다.");
+
+		
+	}
+
+	private void addDog() {
+		Dog newDog = new Dog();
+		System.out.println("이름입력");
+		String name= in.nextLine();
+		System.out.println("강아지 종류 입력");
+		String type = in.nextLine();
+		System.out.println("강아지 성별 입력");
+		String gender = in.nextLine();
+		System.out.println("강아지 나이 입력");
+		int age = in.nextInt();
+		in.nextLine();
+		System.out.println("특이사항 입력");
+		String note = in.nextLine();
+		newDog.input(name, type, gender, age, note);
+		
+		for(int i=0; i<dList.length; i++) {
+			if(dList[i]==null) {
+				dList[i]=newDog;
+				break;
+			}
+		}
+	}
+
+	private void menu() {
+		System.out.println("1. 강아지 등록");
+		System.out.println("2. 강아지 정보 수정");
+		System.out.println("3. 원생 전체보기");
+		System.out.println("4. 강아지 퇴소");
+
+	}
+	
+}
+```  
+  
+  
+  
+  
+  
   
 
 
