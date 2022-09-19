@@ -78,7 +78,24 @@ String s = a.charAt(0);
 객체가 가진 자원(변수등은) 바러 접근하지 않는게 좋음..  
   
   
+7번  
+
+![7번](https://user-images.githubusercontent.com/80766275/190939869-6458cf5f-6922-42ac-8da3-0279725e7041.PNG)
+  
+  
+  
+  
+  
+7번 응용  
+
+![7번 응용](https://user-images.githubusercontent.com/80766275/190939982-6aa25e0a-8c77-47e0-9f92-320849ad1cd8.PNG)
+
+  
+IndexOf는 문자열에서 특정 단어가 있는지를 찾고 있을 경우 위치값을 리턴하는 내장 함수이다. 위치값은 0부터 시작하기 때문에 0 이상값이 나오면 결과가 리턴이 되고, -1인 경우 해당 값이 없을 경우이다.  
+  
+  
+  
 8번  
 ![8번](https://user-images.githubusercontent.com/80766275/190938609-52cdec95-af28-4604-9677-63c9d4ef5ce1.PNG)
 
-  
+
