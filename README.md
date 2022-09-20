@@ -181,65 +181,131 @@ public class Goods {
 ```
 package Market;
 
+import java.util.ArrayList;
 import java.util.Scanner;
-
 public class GoodsManager {
 
-	Goods[] gList = new Goods[10];
-	Scanner in = new Scanner(System.in);
-	GoodsManager(){
-		//물건을 관리하는 객체 물건 1개가 아니라 전체
-		for(;;) {
-			menu();
-			int selMenu = in.nextInt();
-			in.nextLine();
-			if(selMenu==1) {
-				addGoods();
-			}else if(selMenu==3) {
-				listGoods();
-			}
-		}
-	}
-	
-	private void listGoods() {
-		for(int i=0; i<gList.length;i++) {
-			if(gList[i]!=null) {
-				System.out.println(i+"번 정보----");
-				gList[i].prt();
-				System.out.println("----------");
-			}
-		}
-	}
+   Goods[] gList = new Goods[10];
+   Scanner in = new Scanner(System.in);
 
-	private void addGoods() {
-		Goods newGoods= new Goods();
-		System.out.println("이름입력");
-		String name = in.nextLine();
-		System.out.println("아이디입력");
-		String id = in.nextLine();
-		System.out.println("수량입력");
-		int cnt = in.nextInt();
-		in.nextLine();
-		System.out.println("가격입력");
-		int price = in.nextInt ();
-		in.nextLine();
-		newGoods.setting(name, id, cnt, price);
-		
-		for(int i=0; i<gList.length; i++) {
-			if(gList[i]==null) {
-				gList[i] =newGoods;
-				break;
-			}
-		}
-	}
+   GoodsManager() {
+      // 물건을 관리하는 객체, 물건등록, 수정, 삭제 , 물건1개가 아님. .. . .. .
 
-	private void menu() {
-		System.out.println("1. 물건등록");
-		System.out.println("2. 물건수정");
-		System.out.println("3. 전체보기");
-		System.out.println("4. 물건삭제");
+      for (;;) {
+         menu();
+         int selMenu = in.nextInt();
+         in.nextLine();
+         if (selMenu == 1) {
+            addGoods();
+         } else if (selMenu == 2) {
+            modGoods();
+         } else if (selMenu == 3) {
+            listGoods();
+         } else if (selMenu == 4) {
+            deleteGoods();
+         } else if (selMenu == 5) {
+            searchGoods();
+         }
+      }
+   }
 
-	}
+   private void addGoods() {// 물건추가
+      Goods newGoods = new Goods();
+      System.out.println("이름 입력");
+      String name = in.nextLine();
+      System.out.println("아이디입력");
+      String id = in.nextLine();
+      System.out.println("수량입력");
+      int cnt = in.nextInt();
+      in.nextLine();
+      System.out.println("가격입력");
+      int price = in.nextInt();
+      in.nextLine();
+      newGoods.setting(name, id, cnt, price);
+
+      for (int i = 0; i < gList.length; i++) {
+         if (gList[i] == null) {
+            gList[i] = newGoods;
+            break;
+         }
+      }
+   }
+
+   private void listGoods() {
+      // TODO auto-generated method stub
+      for (int i = 0; i < gList.length; i++) {
+         if (gList[i] != null) {
+            System.out.println(i + "번 정보----");
+            gList[i].prt();
+            System.out.println("---------------");
+         }
+      }
+   }
+
+   private void modGoods() {
+      // 이름으로 수정하시오.. 이름으로 수정하는데 수량하고 가격만 수정이 가능하다..
+      System.out.println("<수정> 이름을 입력하세요");
+      String modName = in.nextLine();
+      boolean flag = true;
+      for (int i = 0; i < gList.length; i++) {
+         if (gList[i] != null) {
+            if (gList[i].name.equals(modName)) {
+               System.out.println("수량을 입력하세요");
+               int newInt = in.nextInt();
+               in.nextLine();
+               gList[i].cnt = newInt;
+
+               System.out.println("가격을 입력하세요");
+               newInt = in.nextInt();
+               in.nextLine();
+               gList[i].price = newInt;
+               flag = false;
+               break;
+            }
+         }
+      }
+      if (flag) {
+         System.out.println("이름이 없습니다. ");
+      }
+   }
+
+   private void deleteGoods() {
+      // 이름으로 검색하여 삭제.
+      System.out.println("삭제할 이름을 입력하시오");
+      String deletename = in.nextLine();
+      for (int i = 0; i < gList.length; i++) {
+         if (gList[i] != null) {
+            if (gList[i].name.equals(deletename)) {
+               gList[i] = null;
+               System.out.println("삭제합니다.");
+               break;
+            }
+         }
+      }
+   }
+
+   private void searchGoods() {
+      System.out.println("검색할 이름을 입력하세요");
+      String searchname = in.nextLine();
+      for (int i = 0; i < gList.length; i++) {
+         if (gList[i] != null) {
+            if (gList[i].name.contains(searchname)) {
+               gList[i].prt();
+            }
+         }
+      }
+   }
+
+   private void menu() {
+      // TODO auto-generated method stub
+      System.out.println("1. 물건등록");
+      System.out.println("2. 물건수정 ");
+      System.out.println("3. 전체보기");
+      System.out.println("4. 물건삭제");
+      System.out.println("5. 물건검색");
+      System.out.println("============>");
+
+   }
 }
 ``` 
   
